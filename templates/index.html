@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Input Options</title>
+</head>
+<body>
+    <h1>Select Input Option</h1>
+    <form action="/start_stream" method="POST">
+        <input type="radio" id="webcam" name="type" value="webcam" required>
+        <label for="webcam">Use Webcam</label><br><br>
+
+        <input type="radio" id="ip" name="type" value="ip">
+        <label for="ip">IP Camera</label><br>
+        <div id="ip-details" style="display:none;">
+            <label for="ip">IP Address:</label>
+            <input type="text" name="ip" id="ip"><br>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username"><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"><br>
+        </div>
+        <br>
+        <button type="submit">Start Stream</button>
+    </form>
+
+    <script>
+        const ipOption = document.getElementById('ip');
+        const ipDetails = document.getElementById('ip-details');
+
+        ipOption.addEventListener('change', () => {
+            if (ipOption.checked) {
+                ipDetails.style.display = 'block';
+            }
+        });
+
+        document.getElementById('webcam').addEventListener('change', () => {
+            ipDetails.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
